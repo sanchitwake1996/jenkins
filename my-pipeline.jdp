@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    stages {
+           stage('PULL') {
+            steps {
+                git branch: 'kubernetes', url: 'https://github.com/sanchitwake1996/EasyCRUD.git'
+            }
+        }
+        stage('BUILD') {
+            steps {
+                 echo 'build success'
+            }
+        }
+        stage('TEST') {
+            steps {
+                 echo 'test success'
+            }
+        }
+        stage('DEPLOY') {
+            steps {
+              echo 'deploy success'
+            }
+        }
+    }
+}
