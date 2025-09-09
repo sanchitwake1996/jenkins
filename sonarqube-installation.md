@@ -46,3 +46,11 @@ cd /opt/sonar/bin/linux-x86-64
 
 
 sqp_2073e72c219177933a3e8c3f3ce983c1de746e0d
+
+  stage('TEST') {
+            steps {
+                sh '''cd backend
+                mvn sonar:sonar   -Dsonar.projectKey=studentapp   -Dsonar.projectName='studentapp'   -Dsonar.host.url=http://52.38.237.99:9000   -Dsonar.token=sqp_2073e72c219177933a3e8c3f3ce983c1de746e0d
+                '''
+            }
+        }
