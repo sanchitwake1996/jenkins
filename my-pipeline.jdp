@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-           stage('PULL') {
+        stage('PULL') {
             steps {
                 git branch: 'kubernetes', url: 'https://github.com/sanchitwake1996/EasyCRUD.git'
             }
@@ -20,6 +20,11 @@ pipeline {
                     mvn sonar:sonar   -Dsonar.projectKey=studentapp
                     '''
         }
+            }
+        }
+         stage('QUALITY-GATE') {
+            steps {
+                waitForQualityGate abortPipeline: true, credentialsId: 'sonar-cred'
             }
         }
         stage('DEPLOY') {
