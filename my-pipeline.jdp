@@ -24,7 +24,9 @@ pipeline {
         }
          stage('QUALITY-GATE') {
             steps {
-                waitForQualityGate abortPipeline: true, credentialsId: 'sonar-cred'
+                timeout(10) {
+                    waitForQualityGate abortPipeline: true, credentialsId: 'sonar-cred'
+                }
             }
         }
         stage('DEPLOY') {
