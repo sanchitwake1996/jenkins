@@ -29,9 +29,9 @@ pipeline {
                 }
             }
         }
-        stage('DEPLOY') {
+        stage('DELIVERY') {
             steps {
-              echo 'deploy success'
+              sh ''' aws s3 sync backend/target/student
             }
         }
     }

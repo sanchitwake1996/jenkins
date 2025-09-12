@@ -1,0 +1,30 @@
+pipeline{
+    agent any
+    stages {
+        stage ("PULL"){
+            steps {
+                git branch: 'main', url: 'https://github.com/sanchitwake1996/practice_terraform.git'
+            }
+        }
+        stage ("PLAN"){
+            steps {
+                sh '''cd Day9
+                    terraform init
+                    terraform plan'''
+            }
+        }
+        stage ("APPROVAL"){
+            steps {
+                timeout(10) {
+                    input message : 'Approval is required. Shall we Procced ?', ok : "Approve"
+                }
+            }
+        }
+        stage ("APPLY"){
+            steps {
+                sh '''cd Day9
+                    terraform apply --auto-approve'''
+            }
+        }
+    }
+}

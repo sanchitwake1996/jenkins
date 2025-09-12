@@ -54,3 +54,15 @@ sqp_2073e72c219177933a3e8c3f3ce983c1de746e0d
                 '''
             }
         }
+
+
+        SECRET ACCESS KEY - BidT8esSIj9TumDZvdRs8lwSTCl7bomL6XTIGTZM
+
+
+        \c sonarqube;
+SELECT login, crypted_password = $2a$10$6zT6U2eGk7.Eh4e0VtIPK.0YxFn5UyHwxLCOOZrQF9NGRhVhsN84O
+ FROM users WHERE login = 'admin';
+
+UPDATE users 
+SET crypted_password = '$2a$10$6zT6U2eGk7.Eh4e0VtIPK.0YxFn5UyHwxLCOOZrQF9NGRhVhsN84O'
+WHERE login = 'admin';
